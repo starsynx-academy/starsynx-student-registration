@@ -1,3 +1,7 @@
+# STARSYNX Student Registration System
+# This program manages student registration records.
+
+
 # Store all registered students
 students = []
 
@@ -12,18 +16,18 @@ def register_student():
     phone = input("Enter Phone Number: ")
     program = input("Enter Program: ")
 
-    # Check if Student ID already exists
-    for student in students:
-        if student["student_id"] == student_id:
-            print("Error: Student ID already exists.")
-            return
-
-    # Validate that all required fields are filled
+    # Validate required information
     if not student_id or not name or not email or not phone or not program:
-        print("Error: All fields are required.")
+        print("\nError: All fields are required.")
         return
 
-    # Create student record
+    # Prevent duplicate Student IDs
+    for student in students:
+        if student["student_id"] == student_id:
+            print("\nError: Student ID already exists.")
+            return
+
+    # Create a student record
     student = {
         "student_id": student_id,
         "name": name,
@@ -32,24 +36,28 @@ def register_student():
         "program": program
     }
 
-    # Add student to the list
+    # Add the student record to the list
     students.append(student)
 
     print("\nStudent registered successfully!")
-# View all registered students
+
+
+# Display all registered students
 def view_students():
     print("\n--- Registered Students ---")
 
+    # Check whether any students are registered
     if not students:
         print("No students registered.")
         return
 
+    # Display each student record
     for student in students:
-        print(f"\nStudent ID: {student['student_id']}")
-        print(f"Name: {student['name']}")
-        print(f"Email: {student['email']}")
-        print(f"Phone: {student['phone']}")
-        print(f"Program: {student['program']}")
+        print("\nStudent ID:", student["student_id"])
+        print("Name:", student["name"])
+        print("Email:", student["email"])
+        print("Phone:", student["phone"])
+        print("Program:", student["program"])
         print("----------------------------")
 
 
@@ -59,38 +67,43 @@ def search_student():
 
     student_id = input("Enter Student ID: ")
 
+    # Search through all registered students
     for student in students:
         if student["student_id"] == student_id:
             print("\nStudent Found!")
-            print(f"Student ID: {student['student_id']}")
-            print(f"Name: {student['name']}")
-            print(f"Email: {student['email']}")
-            print(f"Phone: {student['phone']}")
-            print(f"Program: {student['program']}")
+            print("Student ID:", student["student_id"])
+            print("Name:", student["name"])
+            print("Email:", student["email"])
+            print("Phone:", student["phone"])
+            print("Program:", student["program"])
             return
 
-    print("Student not found.")
+    print("\nStudent not found.")
 
 
-# Update student information
+# Update an existing student's information
 def update_student():
     print("\n--- Update Student ---")
 
     student_id = input("Enter Student ID: ")
 
+    # Find the student
     for student in students:
         if student["student_id"] == student_id:
-            print("\nEnter new information:")
+
+            print("\nEnter new student information.")
 
             name = input("Enter Full Name: ")
             email = input("Enter Email Address: ")
             phone = input("Enter Phone Number: ")
             program = input("Enter Program: ")
 
+            # Validate updated information
             if not name or not email or not phone or not program:
-                print("Error: All fields are required.")
+                print("\nError: All fields are required.")
                 return
 
+            # Update student information
             student["name"] = name
             student["email"] = email
             student["phone"] = phone
@@ -99,60 +112,69 @@ def update_student():
             print("\nStudent updated successfully!")
             return
 
-    print("Student not found.")
+    print("\nStudent not found.")
 
 
-# Delete a student
+# Delete a student record
 def delete_student():
     print("\n--- Delete Student ---")
 
     student_id = input("Enter Student ID: ")
 
+    # Find and remove the student
     for student in students:
         if student["student_id"] == student_id:
             students.remove(student)
             print("\nStudent deleted successfully!")
             return
 
-    print("Student not found.")
+    print("\nStudent not found.")
 
 
-# Main menu of the application
+# Display the main menu
 def main():
     while True:
-        print("\n==============================")
-        print("STARSYNX Student Registration System")
-        print("==============================")
+        print("\n========================================")
+        print("   STARSYNX STUDENT REGISTRATION SYSTEM")
+        print("========================================")
         print("1. Register Student")
         print("2. View Students")
         print("3. Search Student")
         print("4. Update Student")
         print("5. Delete Student")
         print("6. Exit")
+        print("========================================")
 
-        choice = input("\nEnter your choice: ")
+        choice = input("Enter your choice: ")
 
+        # Register a student
         if choice == "1":
             register_student()
 
+        # View all students
         elif choice == "2":
             view_students()
 
+        # Search for a student
         elif choice == "3":
             search_student()
 
+        # Update student information
         elif choice == "4":
             update_student()
 
+        # Delete a student
         elif choice == "5":
             delete_student()
 
+        # Exit the program
         elif choice == "6":
-            print("Thank you for using the STARSYNX Student Registration System.")
+            print("\nThank you for using the STARSYNX Student Registration System.")
             break
 
+        # Handle invalid menu choices
         else:
-            print("Invalid choice. Please try again.")
+            print("\nInvalid choice. Please select a number from 1 to 6.")
 
 
 # Start the application
