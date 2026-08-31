@@ -1,7 +1,6 @@
 # STARSYNX Student Registration System
 # This program manages student registration records.
 
-# Store all registered students
 students = []
 
 
@@ -26,7 +25,7 @@ def register_student():
             print("\nError: Student ID already exists.")
             return
 
-    # Create a student record
+    # Create student record
     student = {
         "student_id": student_id,
         "name": name,
@@ -35,7 +34,7 @@ def register_student():
         "program": program
     }
 
-    # Add the student record to the list
+    # Add student to the list
     students.append(student)
 
     print("\nStudent registered successfully!")
@@ -45,12 +44,10 @@ def register_student():
 def view_students():
     print("\n--- Registered Students ---")
 
-    # Check whether any students are registered
     if not students:
         print("No students registered.")
         return
 
-    # Display each student record
     for student in students:
         print("\nStudent ID:", student["student_id"])
         print("Name:", student["name"])
@@ -60,13 +57,12 @@ def view_students():
         print("----------------------------")
 
 
-# Search for a student using Student ID
+# Search for a student
 def search_student():
     print("\n--- Search Student ---")
 
     student_id = input("Enter Student ID: ")
 
-    # Search through all registered students
     for student in students:
         if student["student_id"] == student_id:
             print("\nStudent Found!")
@@ -80,13 +76,12 @@ def search_student():
     print("\nStudent not found.")
 
 
-# Update an existing student's information
+# Update student information
 def update_student():
     print("\n--- Update Student ---")
 
     student_id = input("Enter Student ID: ")
 
-    # Find the student
     for student in students:
         if student["student_id"] == student_id:
             print("\nEnter new student information.")
@@ -96,12 +91,10 @@ def update_student():
             phone = input("Enter Phone Number: ")
             program = input("Enter Program: ")
 
-            # Validate updated information
             if not name or not email or not phone or not program:
                 print("\nError: All fields are required.")
                 return
 
-            # Update student information
             student["name"] = name
             student["email"] = email
             student["phone"] = phone
@@ -113,13 +106,12 @@ def update_student():
     print("\nStudent not found.")
 
 
-# Delete a student record
+# Delete a student
 def delete_student():
     print("\n--- Delete Student ---")
 
     student_id = input("Enter Student ID: ")
 
-    # Find and remove the student
     for student in students:
         if student["student_id"] == student_id:
             students.remove(student)
@@ -129,7 +121,7 @@ def delete_student():
     print("\nStudent not found.")
 
 
-# Display the main menu
+# Main menu
 def main():
     while True:
         print("\n========================================")
@@ -145,32 +137,25 @@ def main():
 
         choice = input("Enter your choice: ")
 
-        # Register a student
         if choice == "1":
             register_student()
 
-        # View all students
         elif choice == "2":
             view_students()
 
-        # Search for a student
         elif choice == "3":
             search_student()
 
-        # Update student information
         elif choice == "4":
             update_student()
 
-        # Delete a student
         elif choice == "5":
             delete_student()
 
-        # Exit the program
         elif choice == "6":
             print("\nThank you for using the STARSYNX Student Registration System.")
             break
 
-        # Handle invalid menu choices
         else:
             print("\nInvalid choice. Please select a number from 1 to 6.")
 
