@@ -4,7 +4,6 @@
 students = []
 
 
-# Register a new student
 def register_student():
     print("\n--- Register Student ---")
 
@@ -14,18 +13,15 @@ def register_student():
     phone = input("Enter Phone Number: ")
     program = input("Enter Program: ")
 
-    # Validate required information
     if not student_id or not name or not email or not phone or not program:
         print("\nError: All fields are required.")
         return
 
-    # Prevent duplicate Student IDs
     for student in students:
         if student["student_id"] == student_id:
             print("\nError: Student ID already exists.")
             return
 
-    # Create student record
     student = {
         "student_id": student_id,
         "name": name,
@@ -34,13 +30,10 @@ def register_student():
         "program": program
     }
 
-    # Add student to the list
     students.append(student)
-
     print("\nStudent registered successfully!")
 
 
-# Display all registered students
 def view_students():
     print("\n--- Registered Students ---")
 
@@ -57,7 +50,6 @@ def view_students():
         print("----------------------------")
 
 
-# Search for a student
 def search_student():
     print("\n--- Search Student ---")
 
@@ -76,7 +68,6 @@ def search_student():
     print("\nStudent not found.")
 
 
-# Update student information
 def update_student():
     print("\n--- Update Student ---")
 
@@ -106,7 +97,6 @@ def update_student():
     print("\nStudent not found.")
 
 
-# Delete a student
 def delete_student():
     print("\n--- Delete Student ---")
 
@@ -121,7 +111,6 @@ def delete_student():
     print("\nStudent not found.")
 
 
-# Main menu
 def main():
     while True:
         print("\n========================================")
@@ -139,27 +128,20 @@ def main():
 
         if choice == "1":
             register_student()
-
         elif choice == "2":
             view_students()
-
         elif choice == "3":
             search_student()
-
         elif choice == "4":
             update_student()
-
         elif choice == "5":
             delete_student()
-
         elif choice == "6":
             print("\nThank you for using the STARSYNX Student Registration System.")
             break
-
         else:
             print("\nInvalid choice. Please select a number from 1 to 6.")
 
 
-# Start the application
 if __name__ == "__main__":
     main()
